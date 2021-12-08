@@ -36,12 +36,6 @@ end
 
 declare @sql_setup varchar(max)  =''
 
-set @sql_setup =' alter database '+  @db_name +' set single_user with rollback immediate'
-exec ( @sql_setup )
-set @sql_setup = 'drop database '+ @db_name +''
-exec ( @sql_setup )
-
-
 if @overwrite_db <> 1
 begin
 	set @sql_setup = 'Create Database ' +@db_Name
@@ -53,7 +47,7 @@ begin
 	set @sql_setup = ' Drop Database '+@db_name	
 	if @debug = 1 begin print @sql_setup end
 	exec ( @sql_setup )
-	set @sql_setup = null -- safety first!
+	set @sql_setup = null 
 
 	set @sql_setup = 'Create Database ' +@db_Name	
 	if @debug = 1 begin print @sql_setup end
@@ -97,7 +91,8 @@ begin
 	set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (20, ''STUDENT_ASSESSMENT'', NULL, NULL, NULL)'
 	set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (21, ''STUDENT_ASSESSMENT_RESPONSE'', NULL, NULL, NULL)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (22, ''STUDENT_ATTENDANCE'', NULL, NULL, 1)'
-	set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (23, ''STUDENT_PERIOD_ATTENDANCE'', NULL, NULL, 1)'
+	
+  set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (23, ''STUDENT_PERIOD_ATTENDANCE'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (24, ''PERSON_TO_ADDRESS'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (25, ''GRADUATION_STUDENT_PROGRAM'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (26, ''organization'', NULL, NULL, 1)'
@@ -114,20 +109,21 @@ begin
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (36, ''schedule_period'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (37, ''schedule_term_date'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (38, ''Contact'', NULL, NULL, 1)'
+
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (39, ''Gradebook_Score'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (40, ''GRADEBOOK_COLUMN_DEFINITION'', NULL, NULL, 1)'
-  set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (41 ''GRADE_TRANS_COLUMN_DEFINITION'', NULL, NULL, 1)'
+  set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (41, ''GRADE_TRANS_COLUMN_DEFINITION'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (42, ''GRADE_TERM_DATE'', NULL, NULL, 1)'
   set @sql_setup += 'INSERT '+ @db_name +'.dbo.aspen_replication ([id], [table_name], [half], [hourly], [daily]) VALUES (43, ''GRADUATION_REQUIREMENT'', NULL, NULL, 1)'
-   
+  
 	set @sql_setup  += ' SET IDENTITY_INSERT '+ @db_name +' .dbo.aspen_replication OFF '	
 
 	if @debug = 1 print @sql_setup
 	exec ( @sql_setup )
 	
-	if @debug = 1 print ( @sql_setup)
+	if @debug = 1 print ( @sql_setup )
 	
-	set @sql_setup = null
+	set @sql_setup = null  
 end
 
 -- done with inital table setup
