@@ -211,9 +211,8 @@ if object_id('tempdb..#update','U') is not null drop table #update
 
 
 
+go
 
-use [Aspen_ODS]
-GO
 
 
 create proc [dbo].[sp_Update_STD_Table] as
@@ -266,21 +265,7 @@ where std.EnrStatus = 'Active'
  
 
 
- 
-if object_id('tempdb..#form','U') is not null drop table #form
 
-select *
-  into #form
-from [brd-sql2k16rs].Survey.dbo.Transition_Form tf
-
-
-update std
-  set   std.[Delivery Model] = tf.[Delivery Model]
-    ,std.Extended = case when tf.Extended like 'Yes%' then 'Yes' else tf.Extended end
-from Aspen_ODS.dbo.student std
-join #form tf
-  on std.Barcode  = tf.barcode 
-where std.EnrStatus = 'Active'
 
 if object_id('tempdb..#form','U') is not null drop table #form
 
