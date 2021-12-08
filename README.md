@@ -20,6 +20,7 @@ Replication SIS data locally using the data dictionary to rename and select fiel
 * Initialize all tables with ALL data: `exec sp_multiTable_Load @tables = 'FULL'`
 
 Test simple extract: `exec sp_multiTable_Load @tables = 'school,district_school_year_context'`
+                    `exec sp_multiTable_Load @tables = 'EnCompass'`
 
 # SQL Job
 
