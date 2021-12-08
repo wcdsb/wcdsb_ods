@@ -14,13 +14,13 @@ Replication SIS data locally using the data dictionary to rename and select fiel
 3. sp_multiTable_Load.sql   - main script to extract data from the link server
 
 
-* Initialize all tables with no data: `exec sp_multiTable_Load @tables = 'init'`
 * Initialize all tables for Compass ETL: `exec sp_multiTable_Load @tables = 'Compass'`
+* Initialize all tables with no data: `exec sp_multiTable_Load @tables = 'init'`
 * Initialize all tables with top 10 data: `exec sp_multiTable_Load @tables = 'TOP10'`
 * Initialize all tables with ALL data: `exec sp_multiTable_Load @tables = 'FULL'`
 
-Test simple extract: `exec sp_multiTable_Load @tables = 'school,district_school_year_context'`
-                    `exec sp_multiTable_Load @tables = 'EnCompass'`
+Test extract: `exec sp_multiTable_Load @tables = 'school,district_school_year_context',person`
+               
 
 # SQL Job
 
