@@ -1,6 +1,8 @@
 # wcdsb_ods
 
-Aspen ODS replication using the data dictionary to rename fields and only pull active and system fields.
+Aspen ODS replication using the data dictionary to rename fields and only pull active and system fields.  
+
+This project was started before the offical ODS was release and migrated from python scripts to use T-SQL.
 
 # Introduction 
 Replication SIS data locally using the data dictionary to rename and select fields.
