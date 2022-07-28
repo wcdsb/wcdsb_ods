@@ -25,3 +25,5 @@ Test extract: `exec sp_multiTable_Load @tables = 'school,district_school_year_co
 # SQL Job
 
 Create a new SQL job that runs the following proc  `exec sp_Aspen_Replication_Interval @interval = 'daily', @debug =0` fill in `dbo.aspen_replication` with any additional tables.
+
+TEST
